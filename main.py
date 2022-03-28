@@ -1,4 +1,5 @@
 import pygame
+from timer import Timer
 
 WIDTH = 1280
 HEIGHT = 720
