@@ -3,9 +3,9 @@ import time
 class Timer:
     
     def __init__(self):
-        self.time = time.time()
+        self.time = time.perf_counter()
         self.unprocessed = 0
-        self.prev_time = time.time()
+        self.prev_time = time.perf_counter()
         self.fps_list = []
         
         self.first_tick = True
@@ -19,12 +19,12 @@ class Timer:
                     self.unprocessed -= frame_cap
                     break
                 
-                time_2 = time.time()
+                time_2 = time.perf_counter()
                 self.unprocessed += time_2 - self.time
                 self.time = time_2
                 
-        dt = time.time() - self.prev_time
-        self.prev_time = time.time()
+        dt = time.perf_counter() - self.prev_time
+        self.prev_time = time.perf_counter()
         
         self.fps_list.append(1 / dt)
         if len(self.fps_list) > 10:
