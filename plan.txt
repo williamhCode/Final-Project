@@ -1,0 +1,8 @@
+Finished:
+- setup pygame
+
+In Progress:
+- understand how pymunk works
+
+Planning:
+- 
