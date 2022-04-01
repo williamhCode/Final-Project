@@ -61,10 +61,10 @@ def create_static_rectangle(space: pymunk.Space, pos, width, height):
 # Variables --------------------------------------------- #
 space = pymunk.Space()
 space.gravity = 0, 1000
-space.iterations = 20
-space.use_spatial_hash(30, 0)
+# space.use_spatial_hash(30, 100)
 print(space.collision_bias)
-space.collision_bias = 0.0001
+space.collision_bias = 0.00001
+count = 0
 
 circles = []
 # circles.append(create_circle(space, (100, 100), 1, 50))
@@ -91,6 +91,8 @@ while running:
                 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
+                count += 100
+                
                 for i in range(10):
                     for j in range(10):
                         position = tuple(map(sum, zip(pygame.mouse.get_pos(), (i * 5, j * 5))))
@@ -103,6 +105,7 @@ while running:
     
     # Update Logic -------------------------------------------- #
     space.step(dt)
+    print(count)
                 
     # Background --------------------------------------------- #
     screen.fill((100, 0, 0))
