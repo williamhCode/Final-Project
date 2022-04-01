@@ -1,8 +1,11 @@
 Finished:
 - setup pygame
-
-In Progress:
 - understand how pymunk works
 
+In Progress:
+- create a dummy
+
 Planning:
-- 
+- create a neuronetwork
+- do some genetic algorithm stuff
+- NEAT?
