@@ -1,6 +1,6 @@
 import pygame
 import pymunk
-from timer import Timer
+from src.timer import Timer
 
 WIDTH = 1280
 HEIGHT = 720
@@ -21,7 +21,7 @@ def create_circle(space: pymunk.Space, pos, mass, radius):
     
     shape = pymunk.Circle(body, radius)
     shape.friction = 0.5
-    # shape.elasticity = 0.5
+    # shape.elasticity = 1.0
     
     space.add(body, shape)
     return shape
@@ -53,7 +53,7 @@ def create_static_rectangle(space: pymunk.Space, pos, width, height):
     
     shape = pymunk.Poly.create_box(body, (width, height))
     shape.friction = 0.5
-    # shape.elasticity = 0.5
+    # shape.elasticity = 1
     
     space.add(body, shape)
     return shape
@@ -68,6 +68,7 @@ circles = []
 # circles.append(create_circle(space, (100, 100), 1, 50))
 
 rectangles = []
+rectangles.append(create_static_rectangle(space, (640, 25), 1280, 50))
 rectangles.append(create_static_rectangle(space, (640, 700), 1280, 50))
 rectangles.append(create_static_rectangle(space, (25, 300), 50, 800))
 rectangles.append(create_static_rectangle(space, (1255, 300), 50, 800))
@@ -89,12 +90,14 @@ while running:
                 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                count += 100
+                # count += 100
                 
-                for i in range(10):
-                    for j in range(10):
-                        position = tuple(map(sum, zip(pygame.mouse.get_pos(), (i * 5, j * 5))))
-                        circles.append(create_circle(space, position, 1, 7))
+                # for i in range(10):
+                #     for j in range(10):
+                #         position = tuple(map(sum, zip(pygame.mouse.get_pos(), (i * 5, j * 5))))
+                #         circles.append(create_circle(space, position, 1, 7))
+                        
+                circles.append(create_circle(space, pygame.mouse.get_pos(), 1, 20))
                 
     # Timer -------------------------------------------------- #
     dt = main_timer.tick(60)
@@ -118,4 +121,4 @@ while running:
     # Update Display ------------------------------------------------- #
     pygame.display.flip()
             
-            
+

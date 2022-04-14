@@ -1,6 +1,6 @@
 import pygame
 import pymunk
-from timer import Timer
+from src.timer import Timer
 
 WIDTH = 1280
 HEIGHT = 720
