@@ -65,8 +65,12 @@ space.collision_bias = 0.000001
 count = 0
 
 circles = []
+# circles.append(create_circle(space, (100, 100), 1, 50))
+
 rectangles = []
 rectangles.append(create_static_rectangle(space, (640, 700), 1280, 50))
+rectangles.append(create_static_rectangle(space, (25, 300), 50, 800))
+rectangles.append(create_static_rectangle(space, (1255, 300), 50, 800))
 
 # Loop --------------------------------------------------- #
 main_timer = Timer()
@@ -83,6 +87,15 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
                 
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                count += 100
+                
+                for i in range(10):
+                    for j in range(10):
+                        position = tuple(map(sum, zip(pygame.mouse.get_pos(), (i * 5, j * 5))))
+                        circles.append(create_circle(space, position, 1, 7))
+                
     # Timer -------------------------------------------------- #
     dt = main_timer.tick(60)
     framerate = main_timer.get_fps()
@@ -93,7 +106,7 @@ while running:
     print(count)
                 
     # Background --------------------------------------------- #
-    screen.fill((200, 200, 200))
+    screen.fill((100, 0, 0))
     
     # Render ------------------------------------------------- #
     for circle in circles:
