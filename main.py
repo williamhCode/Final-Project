@@ -1,6 +1,7 @@
 import pygame
 import pymunk
 from src.timer import Timer
+import time
 
 WIDTH = 1280
 HEIGHT = 720
@@ -84,25 +85,22 @@ while running:
                 running = False
                 
     # Timer -------------------------------------------------- #
-    dt = main_timer.tick(60)
+    dt = main_timer.tick()
     framerate = main_timer.get_fps()
     pygame.display.set_caption(f'Running at {framerate :.4f}.')
     
     # Update Logic -------------------------------------------- #
     space.step(dt)
-    print(count)
                 
     # Background --------------------------------------------- #
     screen.fill((200, 200, 200))
     
     # Render ------------------------------------------------- #
-    for circle in circles:
-        draw_circle(screen, circle)
-        
-    for rectangle in rectangles:
-        draw_rectangle(screen, rectangle)
+    
     
     # Update Display ------------------------------------------------- #
+    t1 = time.perf_counter()
     pygame.display.flip()
-            
-            
+    
+    t2 = time.perf_counter()
+    print(t2 - t1)

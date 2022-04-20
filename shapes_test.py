@@ -1,6 +1,7 @@
 import pygame
 import pymunk
 from src.timer import Timer
+import time
 
 WIDTH = 1280
 HEIGHT = 720
@@ -117,8 +118,6 @@ while running:
         
     for rectangle in rectangles:
         draw_rectangle(screen, rectangle)
-    
+       
     # Update Display ------------------------------------------------- #
     pygame.display.flip()
-            
-
