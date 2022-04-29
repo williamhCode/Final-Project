@@ -47,8 +47,7 @@ def create_segment(space: pymunk.Space, pos, endpoint, radius, density=1):
     space.add(body, shape)
     return shape
 
-def create_pivot_joint(space: pymunk.Space, body1, body2, *args, collide=False):
+def create_pivot_joint(space: pymunk.Space, body1, body2, *args):
     joint = pymunk.PivotJoint(body1, body2, *args)
-    joint.collide_bodies = collide
     space.add(joint)
     return joint

@@ -28,14 +28,15 @@ class Stickman:
         self.leg_right_top = sf.create_segment(space, (0, 0), Vec2d(0, 40).rotated_degrees(-30), seg_radius) 
         joint3 = add_joint(space, self.lower_body, self.leg_right_top)
 
-        self.leg_left_top.filter = pymunk.ShapeFilter(group=1)
-        self.leg_right_top.filter = pymunk.ShapeFilter(group=1)
-
         self.leg_left_bottom = sf.create_segment(space, (0, 0), Vec2d(0, 60).rotated_degrees(0), seg_radius)
         joint4 = add_joint(space, self.leg_left_top, self.leg_left_bottom)
          
         self.leg_right_bottom = sf.create_segment(space, (0, 0), Vec2d(0, 60).rotated_degrees(0), seg_radius)
-        joint4 = add_joint(space, self.leg_right_top, self.leg_right_bottom)
+        joint5 = add_joint(space, self.leg_right_top, self.leg_right_bottom)
 
         self.segments = [self.upper_body, self.lower_body, self.leg_left_top, self.leg_right_top, self.leg_left_bottom, self.leg_right_bottom]
-        self.joints = [joint1, joint2, joint3]
+        self.joints = [joint1, joint2, joint3, joint4, joint5]
+
+        for shape in self.segments:
+            shape.filter = pymunk.ShapeFilter(group=1)
+        self.head.filter = pymunk.ShapeFilter(group=1)

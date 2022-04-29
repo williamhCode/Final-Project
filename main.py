@@ -48,8 +48,8 @@ def draw_stickman(surface, stickman: Stickman):
     for segment in stickman.segments:
         draw_segment(surface, segment, (97, 127, 203))
 
-    # for joint in stickman.joints:
-    #     draw_joint(surface, joint, (200, 20, 20))
+    for joint in stickman.joints:
+        draw_joint(surface, joint, (180, 20, 20))
 
 # Variables --------------------------------------------- #
 space = pymunk.Space()
