@@ -91,14 +91,14 @@ while running:
                 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                # count += 100
+                count += 100
                 
-                # for i in range(10):
-                #     for j in range(10):
-                #         position = tuple(map(sum, zip(pygame.mouse.get_pos(), (i * 5, j * 5))))
-                #         circles.append(create_circle(space, position, 1, 7))
+                for i in range(10):
+                    for j in range(10):
+                        position = tuple(map(sum, zip(pygame.mouse.get_pos(), (i * 5, j * 5))))
+                        circles.append(create_circle(space, position, 1, 7))
                         
-                circles.append(create_circle(space, pygame.mouse.get_pos(), 1, 20))
+                # circles.append(create_circle(space, pygame.mouse.get_pos(), 1, 20))
                 
     # Timer -------------------------------------------------- #
     dt = main_timer.tick(60)
@@ -106,7 +106,8 @@ while running:
     pygame.display.set_caption(f'Running at {framerate :.4f}.')
     
     # Update Logic -------------------------------------------- #
-    space.step(dt)
+    space.step(dt/2)
+    space.step(dt/2)
     print(count)
                 
     # Background --------------------------------------------- #

@@ -61,10 +61,6 @@ circles = []
 
 ground = sf.create_static_rectangle(space, (640, 700), 1280, 50)
 
-segments = [
-    # sf.create_segment(space, (500, 100), 1, (20, 80), 10),
-]
-
 stickmen = [
     Stickman(space, (500, 100))
 ]
@@ -107,17 +103,10 @@ while running:
     # Render ------------------------------------------------- #
     draw_rectangle(screen, ground, (165, 102, 42))
     
-    for segment in segments:
-        draw_segment(screen, segment)
-    
     for stickman in stickmen:
         draw_stickman(screen, stickman)
 
     # space.debug_draw(draw_options)
 
     # Update Display ------------------------------------------------- #
-    t1 = time.perf_counter()
     pygame.display.flip()
-    
-    t2 = time.perf_counter()
-    # print(t2 - t1)
