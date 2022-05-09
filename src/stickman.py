@@ -24,25 +24,25 @@ def add_joint_and_motor(space: Space, shape1: Segment, shape2: Segment, angle_of
 class Stickman:
     
     def __init__(self, space: Space, pos):
-        seg_radius = 8
+        seg_radius = 6
         
-        self.upper_body = sf.create_segment(space, pos, Vec2d(0, 50), seg_radius)
-        self.head = Circle(self.upper_body.body, 25, (0, -25))
+        self.upper_body = sf.create_segment(space, pos, Vec2d(0, 30), seg_radius)
+        self.head = Circle(self.upper_body.body, 20, (0, -20))
         space.add(self.head)
 
-        self.lower_body = sf.create_segment(space, (0, 0), Vec2d(0, 35), seg_radius)
+        self.lower_body = sf.create_segment(space, (0, 0), Vec2d(0, 25), seg_radius)
         joint1, self.motor1 = add_joint_and_motor(space, self.upper_body, self.lower_body, 0, 30)
         
-        self.leg_left_top = sf.create_segment(space, (0, 0), Vec2d(0, 40), seg_radius)
+        self.leg_left_top = sf.create_segment(space, (0, 0), Vec2d(0, 30), seg_radius)
         joint2, self.motor2 = add_joint_and_motor(space, self.lower_body, self.leg_left_top, 30, 30)
         
-        self.leg_right_top = sf.create_segment(space, (0, 0), Vec2d(0, 40), seg_radius) 
+        self.leg_right_top = sf.create_segment(space, (0, 0), Vec2d(0, 30), seg_radius) 
         joint3, self.motor3 = add_joint_and_motor(space, self.lower_body, self.leg_right_top, -30, 30)
 
-        self.leg_left_bottom = sf.create_segment(space, (0, 0), Vec2d(0, 60), seg_radius)
+        self.leg_left_bottom = sf.create_segment(space, (0, 0), Vec2d(0, 40), seg_radius)
         joint4, self.motor4 = add_joint_and_motor(space, self.leg_left_top, self.leg_left_bottom, 10, 30)
          
-        self.leg_right_bottom = sf.create_segment(space, (0, 0), Vec2d(0, 60), seg_radius)
+        self.leg_right_bottom = sf.create_segment(space, (0, 0), Vec2d(0, 40), seg_radius)
         joint5, self.motor5 = add_joint_and_motor(space, self.leg_right_top, self.leg_right_bottom, -10, 30)
 
         self.segments = [self.upper_body, self.lower_body, self.leg_left_top, self.leg_right_top, self.leg_left_bottom, self.leg_right_bottom]
