@@ -30,7 +30,7 @@ def create_static_rectangle(space: Space, pos, width, height):
 
     shape = Poly.create_box(body, (width, height))
     shape.friction = 0.5
-    shape.elasticity = 0.5
+    # shape.elasticity = 0.5
 
     space.add(body, shape)
     return shape
@@ -41,8 +41,8 @@ def create_segment(space: Space, pos, endpoint, radius, density=1):
     
     shape = Segment(body, (0, 0), endpoint, radius)
     shape.density = density
-    shape.friction = 0.5
-    shape.elasticity = 0.5
+    shape.friction = 1
+    # shape.elasticity = 0.5
     
     space.add(body, shape)
     return shape
