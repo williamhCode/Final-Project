@@ -140,7 +140,7 @@ running = True
 time = 0
 while running:
     # Timer -------------------------------------------------- #
-    dt = main_timer.tick()
+    dt = main_timer.tick(60)
     framerate = main_timer.get_fps()
     pygame.display.set_caption(f'Running at {framerate :.4f}.')
     
