@@ -1,7 +1,3 @@
-"""
-author: William Hou
-"""
-
 import time
 
 class Timer:
