@@ -4,11 +4,10 @@ import math, time, random
 import numpy as np
 import tensorflow as tf
 tf.config.set_visible_devices([], 'GPU')
-from tensorflow.keras.initializers import RandomNormal
 
 from keras.models import Sequential
 from keras.layers import Dense, Activation, InputLayer
-
+from tensorflow.keras.initializers import RandomNormal, RandomUniform
 
 def sum_tp(t1, t2):
     return tuple(map(sum, zip(t1, t2)))
@@ -66,8 +65,8 @@ class Stickman:
         self.brain = Sequential()
         self.brain.add(InputLayer(input_shape=(12,)))
         # self.brain.add(Dense(10, input_shape=(12,), activation='relu', kernel_initializer='random_normal', bias_initializer='random_normal'))
-        self.brain.add(Dense(10, activation='tanh', kernel_initializer=RandomNormal(mean=0, stddev = 1), bias_initializer='random_normal'))
-        self.brain.add(Dense(5, activation='tanh', kernel_initializer=RandomNormal(mean=0, stddev = 1), bias_initializer='random_normal'))
+        self.brain.add(Dense(10, activation='tanh', kernel_initializer=RandomUniform(-1, 1), bias_initializer='random_normal'))
+        self.brain.add(Dense(5, activation='tanh', kernel_initializer=RandomUniform(-1, 1), bias_initializer='random_normal'))
 
         collision_type = id + 2
         self.head.collision_type = collision_type
@@ -88,13 +87,11 @@ class Stickman:
     def update_speeds(self):
         inputs = [shape.body.angle for shape in self.segments] \
         + [shape.body.angular_velocity for shape in self.segments]
-        # print(inputs)
         
         # t1 = time.perf_counter()
         outputs = self.brain(np.array([inputs]))[0]
         # t2 = time.perf_counter()
         # print(t2 - t1)
-        # print(outputs)
         
         for i, motor in enumerate(self.motors):
             motor.rate = outputs[i] * self.JOINTS_SPEED
